@@ -1,0 +1,20 @@
+version: '3.7'
+services: 
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379"
+  app:
+    build: ./
+    image: docker-ts
+    ports: 
+      - "3000:3000"
+    environment: 
+      - "REDIS_URL=redis://redis"
+  app2:
+    build: ./
+    image: docker-ts
+    ports: 
+      - "3001:3000"
+    environment: 
+      - "REDIS_URL=redis://redis"
